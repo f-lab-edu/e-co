@@ -27,9 +27,16 @@ public class ProductServiceTest {
         productServiceImpl.setProductRepository(productRepository);
         productService = productServiceImpl;
         products = new ArrayList<>();
-        products.add(new Product("TestProduct", 15000, "", 100, 1));
-        products.add(new Product("TestProduct2", 18000, "", 2100, 1));
-        products.add(new Product("TestProduct3", 20000, "", 1100, 1));
+        for (int i = 0; i < 3; i++) {
+            products.add(Product
+                    .builder()
+                    .name("TestProduct" + i)
+                    .price(15000)
+                    .description("TestDescription")
+                    .stock(100)
+                    .sellerId(1)
+                    .build());
+        }
     }
 
     @Test
@@ -55,7 +62,14 @@ public class ProductServiceTest {
     public void getProduct() {
         assertThrows(NoSuchElementException.class, () -> productService.getProduct(999999));
 
-        Product product = new Product("TestProduct", 15000, "", 100, 1);
+        Product product = Product
+                .builder()
+                .name("TestProduct")
+                .price(15000)
+                .description("TestDescription")
+                .stock(100)
+                .sellerId(1)
+                .build();
         Product newProduct = productService.save(product);
 
         assertEquals(product, productService.getProduct(newProduct.getId()));

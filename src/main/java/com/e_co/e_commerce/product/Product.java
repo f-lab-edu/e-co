@@ -27,14 +27,6 @@ public class Product {
     private int stock;
     private int sellerId;
 
-    public Product(String name, int price, String description, int stock, int sellerId) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.stock = stock;
-        this.sellerId = sellerId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

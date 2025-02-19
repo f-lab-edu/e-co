@@ -30,7 +30,14 @@ public class ProductRepositoryTest {
         products = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             Random random = new Random();
-            products.add(new Product("TestProduct" + i, random.nextInt(10) * 1000 + 10000, RandomString.make(), random.nextInt(10), 1));
+            products.add(Product
+                    .builder()
+                    .name("TestProduct" + i)
+                    .price(random.nextInt(10) * 1000 + 10000)
+                    .description(RandomString.make())
+                    .stock(random.nextInt(10))
+                    .sellerId(1)
+                    .build());
         }
     }
 

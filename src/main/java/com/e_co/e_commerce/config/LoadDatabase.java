@@ -22,7 +22,14 @@ class LoadDatabase {
             // 프로덕트 등록
             for (int i = 0; i < 25; i++) {
                 Random random = new Random();
-                log.info("Preloading {}", productService.save(new Product("TestProduct" + i, random.nextInt(10) * 1000 + 10000, "", random.nextInt(10), 1)));
+                log.info("Preloading {}", productService.save(Product
+                        .builder()
+                        .name("TestProduct" + i)
+                        .price(random.nextInt(10) * 1000 + 10000)
+                        .description("")
+                        .stock(random.nextInt(10))
+                        .sellerId(1)
+                        .build()));
             }
         };
     }
