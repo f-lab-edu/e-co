@@ -23,7 +23,7 @@ public class ProductServiceTest {
     public void setUp() {
         productRepository.deleteAll();
 
-        ProductServiceImpl productServiceImpl = new ProductServiceImpl();
+        ProductService productServiceImpl = new ProductService();
         productServiceImpl.setProductRepository(productRepository);
         productService = productServiceImpl;
         products = new ArrayList<>();
@@ -63,6 +63,6 @@ public class ProductServiceTest {
 
     @Test
     public void getProducts() {
-            
+
     }
 }

@@ -1,5 +1,6 @@
 package com.e_co.e_commerce.product;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,13 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class ProductController {
-    private ProductService productService;
-
-    @Autowired
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
-    }
+    private final ProductService productService;
 
     @GetMapping("/product")
     public ResponseEntity<Product> getProduct(@RequestParam("id") long id) {
@@ -31,8 +28,6 @@ public class ProductController {
                                                      @RequestParam(value = "isOnlyExist", defaultValue = "true", required = false) boolean isOnlyExist,
                                                      @PageableDefault Pageable pageable
     ) {
-        Page<Product> products = productService.getProducts(name, description, isOnlyExist, pageable);
-
-        return new ResponseEntity<>(products, HttpStatus.OK);
+        return new ResponseEntity<>(productService.getProducts(name, description, isOnlyExist, pageable), HttpStatus.OK);
     }
 }

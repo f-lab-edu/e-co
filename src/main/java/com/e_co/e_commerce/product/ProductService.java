@@ -1,17 +1,34 @@
 package com.e_co.e_commerce.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-public interface ProductService {
-    long getCount();
+import java.util.NoSuchElementException;
 
-    Product save(Product product);
+@Service
+public class ProductService {
+    private ProductRepository productRepository;
 
-    Product getProduct(long id);
+    @Autowired
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
-    /**
-     * 페이지네이션, 필터, 정렬이 적용된 여러 상품 가져오기
-     */
-    Page<Product> getProducts(String name, String description, boolean isOnlyExist, Pageable pageable);
+    public long getCount() {
+        return productRepository.count();
+    }
+
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    public Product getProduct(long id) {
+        return productRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Id에 해당하는 상품이 없습니다."));
+    }
+
+    public Page<Product> getProducts(String name, String description, boolean isOnlyExist, Pageable pageable) {
+        return productRepository.findAllByNameOrDescriptionOrStockGreaterThanEqual(name, description, isOnlyExist ? 1 : 0, pageable);
+    }
 }
