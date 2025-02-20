@@ -23,8 +23,7 @@ public class ProductServiceTest {
     public void setUp() {
         productRepository.deleteAll();
 
-        ProductService productServiceImpl = new ProductService();
-        productServiceImpl.setProductRepository(productRepository);
+        ProductService productServiceImpl = new ProductService(productRepository);
         productService = productServiceImpl;
         products = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
