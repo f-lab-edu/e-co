@@ -18,8 +18,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue
+    private long id;
 
     private String name;
     private int price;
