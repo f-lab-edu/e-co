@@ -27,4 +27,24 @@ public class OrderProduct {
     private Product product;
 
     private int stock;
+
+    // 순수한 객체를 고려한 양방향 연관관계 설정
+    public void setOrder(Order order) {
+        if (order == null) return;
+        if (this.order != null) {
+            this.getOrder().getProducts().remove(this);
+        }
+        this.order = order;
+        this.getOrder().getProducts().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "id=" + id +
+                ", order=" + order +
+                ", product=" + product +
+                ", stock=" + stock +
+                '}';
+    }
 }
