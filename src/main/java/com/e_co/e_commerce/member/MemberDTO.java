@@ -9,4 +9,8 @@ public class MemberDTO {
     private long id;
     private String name;
     private String email;
+
+    public Member toEntity() {
+        return Member.builder().id(id).name(name).email(email).build();
+    }
 }

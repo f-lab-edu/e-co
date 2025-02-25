@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -31,11 +33,10 @@ public class OrderProduct {
     // 순수한 객체를 고려한 양방향 연관관계 설정
     public void setOrder(Order order) {
         if (order == null) return;
-        if (this.order != null) {
-            this.getOrder().getProducts().remove(this);
-        }
         this.order = order;
-        this.getOrder().getProducts().add(this);
+        List<OrderProduct> orderProducts = this.getOrder().getProducts();
+        if (!orderProducts.contains(this))
+            orderProducts.add(this);
     }
 
     @Override
