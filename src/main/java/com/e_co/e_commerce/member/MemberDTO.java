@@ -13,4 +13,8 @@ public class MemberDTO {
     public Member toEntity() {
         return Member.builder().id(id).name(name).email(email).build();
     }
+
+    public static MemberDTO fromEntity(Member member) {
+        return MemberDTO.builder().id(member.getId()).name(member.getName()).email(member.getEmail()).build();
+    }
 }
