@@ -31,7 +31,6 @@ class LoadDatabase {
                             .price(random.nextInt(10) * 1000 + 10000)
                             .description("")
                             .stock(random.nextInt(10))
-                            .sellerId(1)
                             .build()));
                 }
 

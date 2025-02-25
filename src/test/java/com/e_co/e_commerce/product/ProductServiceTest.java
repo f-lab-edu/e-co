@@ -33,7 +33,6 @@ public class ProductServiceTest {
                     .price(15000)
                     .description("TestDescription")
                     .stock(100)
-                    .sellerId(1)
                     .build());
         }
     }
@@ -67,7 +66,6 @@ public class ProductServiceTest {
                 .price(15000)
                 .description("TestDescription")
                 .stock(100)
-                .sellerId(1)
                 .build();
         Product newProduct = productService.save(product);
 

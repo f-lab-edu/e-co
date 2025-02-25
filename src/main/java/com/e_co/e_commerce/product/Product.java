@@ -5,16 +5,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.Objects;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Product {
     @Id
     @GeneratedValue
@@ -24,29 +26,4 @@ public class Product {
     private int price;
     private String description;
     private int stock;
-    private int sellerId;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product product)) return false;
-        return price == product.price && stock == product.stock && sellerId == product.sellerId && Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(description, product.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, description, stock, sellerId);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", stock=" + stock +
-                ", sellerId=" + sellerId +
-                '}';
-    }
 }
