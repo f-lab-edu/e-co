@@ -23,8 +23,7 @@ public class ProductServiceTest {
     public void setUp() {
         productRepository.deleteAll();
 
-        ProductService productServiceImpl = new ProductService();
-        productServiceImpl.setProductRepository(productRepository);
+        ProductService productServiceImpl = new ProductService(productRepository);
         productService = productServiceImpl;
         products = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -34,7 +33,6 @@ public class ProductServiceTest {
                     .price(15000)
                     .description("TestDescription")
                     .stock(100)
-                    .sellerId(1)
                     .build());
         }
     }
@@ -68,7 +66,6 @@ public class ProductServiceTest {
                 .price(15000)
                 .description("TestDescription")
                 .stock(100)
-                .sellerId(1)
                 .build();
         Product newProduct = productService.save(product);
 

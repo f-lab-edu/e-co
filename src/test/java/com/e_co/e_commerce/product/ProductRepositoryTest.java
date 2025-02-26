@@ -36,7 +36,6 @@ public class ProductRepositoryTest {
                     .price(random.nextInt(10) * 1000 + 10000)
                     .description(RandomString.make())
                     .stock(random.nextInt(10))
-                    .sellerId(1)
                     .build());
         }
     }
